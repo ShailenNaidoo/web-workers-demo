@@ -1,6 +1,17 @@
 import { renderNodes } from './vdom.js'
 import { applyDiff, diff } from './diff.js'
 
+const worker = new Worker('/worker.js', { type: 'module' })
+
+function getDiffFromWorker(VDOMs) {
+  worker.postMessage(JSON.stringify(VDOMs))
+  
+  return new Promise((resolve, reject) => {
+    worker.addEventListener('message', (e) => resolve(e.data))
+    worker.addEventListener('error', (e) => reject(e))
+  })  
+} 
+
 class Component {  
   setState = (newState) => {
   	this.state = {
@@ -17,16 +28,16 @@ function renderToDOM(sel, App) {
   let oldVDOM = app.render()
   let newVDOM = {}
 
-  console.log(oldVDOM)
-  
   const { setState } = app
   
-  app.setState = (...args) => {
+  app.setState = async (...args) => {
     setState(...args)
 
     newVDOM = app.render()
 
-    applyDiff(diff(oldVDOM, newVDOM), el)
+    const diffs = await getDiffFromWorker({ oldVDOM, newVDOM })
+
+    applyDiff(diffs, el)
 
     oldVDOM = newVDOM
   }
