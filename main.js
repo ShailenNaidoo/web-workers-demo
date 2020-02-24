@@ -3,22 +3,17 @@ class App extends Component {
     super()
     
     this.state = {
-      isTruthy: false
+      text: ''
     }
 	}
 
-	render = () => {
-  	return h('div', {}, [
-      h('p', { onclick: this.click }, `This is cool`),
-      h('p', { onclick: this.click }, `This is not cool ${this.state.isTruthy}`),
-      h('p', {}, 'I don\'t change')
-    ])
-  }
-  
-  click = (e) => {
-  	this.setState({
-      isTruthy: !this.state.isTruthy
-    })
+	render = () => h('div', {}, [
+    h('input', { oninput: this.onInput }, ''),
+    h('p', {}, this.state.text)
+  ])
+
+  onInput = (e) => {
+    this.setState({ text: e.target.value })
   }
 }
 
