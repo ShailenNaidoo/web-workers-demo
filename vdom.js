@@ -1,11 +1,16 @@
-const h = (nodeName, attributes, children) => ({
-  nodeName,
-  attributes: {
-  	...attributes,
-    'data-tag': window.randomId(10, 'aA0'),
-  },
-  children
-})
+const h = (nodeName, attributes, children) => {
+  const id = window.randomId(10, 'aA0')
+
+  return {
+    id,
+    nodeName,
+    attributes: {
+      ...attributes,
+      'data-tag': id,
+    },
+    children
+  }
+}
 
 const renderNodes = (vNode) => {
   const el = document.createElement(vNode.nodeName)
