@@ -1,68 +1,4 @@
-// const oldVDOM = {
-//   id: 1,
-//   nodeName: 'p',
-//   attributes: {},
-//   children: [
-//     {
-//       id: 2,
-//       nodeName: 'p',
-//       attributes: {},
-//       children: 'Hello World'
-//     },
-//     {
-//       id: 3,
-//       nodeName: 'p',
-//       attributes: {},
-//       children: [
-//         {
-//           id: 4,
-//           nodeName: 'p',
-//           attributes: {},
-//           children: [
-//             {
-//               id: 5,
-//               nodeName: 'p',
-//               attributes: {},
-//               children: 'World Hello'
-//             },
-//           ]
-//         },
-//       ]
-//     }
-//   ]
-// }
-
-// const newVDOM = {
-//   ...oldVDOM,
-//   children: [
-//     {
-//       id: 2,
-//       nodeName: 'p',
-//       attributes: {},
-//       children: 'Hello World Hello'
-//     },
-//     {
-//       id: 3,
-//       nodeName: 'p',
-//       attributes: {},
-//       children: [
-//         {
-//           id: 4,
-//           nodeName: 'p',
-//           attributes: {},
-//           children: [
-//             {
-//               id: 5,
-//               nodeName: 'p',
-//               attributes: {},
-//               children: 'Wold Hello'
-//             },
-//           ]
-//         },
-//       ]
-//     }
-//   ]
-// }
+import { renderNodes } from '/vdom.js'
 
 function diff(oldNode, newNode) {
   const { children: oldChildren } = oldNode
@@ -98,4 +34,9 @@ function applyDiff(diffs, root) {
 
     root.querySelector(`[data-tag="${diff.id}"]`).replaceWith(renderNodes(diff))
   }
+}
+
+export {
+  diff,
+  applyDiff,
 }
