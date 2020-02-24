@@ -1,5 +1,5 @@
-import { Component, renderToDOM } from '/ui-lib.js'
-import { h } from '/vdom.js'
+import { Component, renderToDOM } from './ui-lib.js'
+import { h } from './vdom.js'
 
 class App extends Component {
 	constructor() {

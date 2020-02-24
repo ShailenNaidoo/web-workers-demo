@@ -1,4 +1,4 @@
-const h = (nodeName, attributes, children) => {
+function h(nodeName, attributes, children) {
   const id = window.randomId(10, 'aA0')
 
   return {
@@ -12,7 +12,7 @@ const h = (nodeName, attributes, children) => {
   }
 }
 
-const renderNodes = (vNode) => {
+function renderNodes(vNode) {
   const el = document.createElement(vNode.nodeName)
 
   for (const [key, value] of Object.entries(vNode.attributes)) {

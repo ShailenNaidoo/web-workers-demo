@@ -1,4 +1,4 @@
-import { renderNodes } from '/vdom.js'
+import { renderNodes } from './vdom.js'
 
 function diff(oldNode, newNode) {
   const { children: oldChildren } = oldNode

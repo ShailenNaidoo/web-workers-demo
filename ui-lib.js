@@ -1,5 +1,5 @@
-import { renderNodes } from '/vdom.js'
-import { applyDiff, diff } from '/diff.js'
+import { renderNodes } from './vdom.js'
+import { applyDiff, diff } from './diff.js'
 
 class Component {  
   setState = (newState) => {
@@ -10,7 +10,7 @@ class Component {
   }
 }
 
-const renderToDOM = (sel, App) => {
+function renderToDOM(sel, App) {
 	const el = document.getElementById(sel)
   const app = new App()
 
