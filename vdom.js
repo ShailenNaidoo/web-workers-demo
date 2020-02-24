@@ -1,45 +1,8 @@
-const h = (nodeName, attributes, children) => {
-  const id = window.randomId(10, 'aA0')
-
-  return {
-    id,
-    nodeName,
-    attributes: {
-      ...attributes,
-      'data-tag': id,
-    },
-    children
-  }
-}
-
-const renderNodes = (vNode) => {
-  const el = document.createElement(vNode.nodeName)
-
-  for (const [key, value] of Object.entries(vNode.attributes)) {
-  	if (typeof value === 'function') {
-			el[key] = value
-		} else {
-      el.setAttribute(key, value)
-    }
-  }
-
-  if (Array.isArray(vNode.children)) {
-    vNode.children.forEach((child) => {
-      el.appendChild(renderNodes(child))
-    })
-  }
-  
-  if (typeof vNode.children === 'string') {
-		el.innerText = vNode.children
-	}
-
-  return el
-}
-
 const renderToDOM = (sel, App) => {
 	const el = document.getElementById(sel)
   const app = new App()
-  const vDOM = app.render()
+
+  let oldVDOM = app.render()
   let newVDOM = {}
   
   const { setState } = app
@@ -49,11 +12,12 @@ const renderToDOM = (sel, App) => {
 
     newVDOM = app.render()
 
-    el.innerHTML = ''
-    el.appendChild(renderNodes(newVDOM))
+    applyDiff(diff(oldVDOM, newVDOM), el)
+
+    oldVDOM = newVDOM
   }
 
-  el.appendChild(renderNodes(vDOM))
+  el.appendChild(renderNodes(oldVDOM))
 }
 
 class Component {  

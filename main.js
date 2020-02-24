@@ -9,7 +9,7 @@ class App extends Component {
 
 	render = () => {
   	return h('div', {}, [
-      h('p', { onclick: this.click }, `This is cool ${!this.state.isTruthy}`),
+      h('p', { onclick: this.click }, `This is cool`),
       h('p', { onclick: this.click }, `This is not cool ${this.state.isTruthy}`),
       h('p', {}, 'I don\'t change')
     ])
