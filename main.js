@@ -13,7 +13,6 @@ class App extends Component {
 	render = () => h('div', {}, [
     h('input', { oninput: this.onInput }, ''),
     h('p', {}, this.state.text),
-    ...Array.from(Array(1000)).map(() => h('p', {}, this.state.text))
   ])
 
   onInput = (e) => {
