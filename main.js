@@ -1,5 +1,5 @@
 import { Component, renderToDOM } from './ui-lib.js'
-import { h } from './vdom.js'
+import { h } from './index.js'
 
 class App extends Component {
 	constructor() {
@@ -16,7 +16,7 @@ class App extends Component {
   ])
 
   onInput = (e) => {
-    this.setState({ text: e.target.value })
+    this.setState({ text: e.target.value || null })
   }
 }
 

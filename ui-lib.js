@@ -1,5 +1,4 @@
-import { renderNodes } from './vdom.js'
-import { applyDiff, diff } from './diff.js'
+import { createVNodeInstance, diff, renderNodes, applyDiff } from './index.js'
 
 const worker = new Worker('/worker.js', { type: 'module' })
 
@@ -25,21 +24,20 @@ function renderToDOM(sel, App) {
 	const el = document.getElementById(sel)
   const app = new App()
 
-  let oldVDOM = app.render()
-  let newVDOM = {}
+  let oldVDOM = createVNodeInstance(app.render())
 
   const { setState } = app
   
   app.setState = async (...args) => {
     setState(...args)
 
-    newVDOM = app.render()
+    const newVDOM = createVNodeInstance(app.render())
 
-    const diffs = await getDiffFromWorker({ oldVDOM, newVDOM })
+    // const diffs = await getDiffFromWorker({ oldVDOM, newVDOM })
+
+    const diffs = diff(oldVDOM, newVDOM)
 
     applyDiff(diffs, el)
-
-    oldVDOM = newVDOM
   }
 
   el.appendChild(renderNodes(oldVDOM))
