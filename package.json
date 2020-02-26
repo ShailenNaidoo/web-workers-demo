@@ -1,0 +1,22 @@
+{
+  "name": "web-workers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ShailenNaidoo/web-workers-demo.git"
+  },
+  "author": "shailen <shailen@lumkani.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShailenNaidoo/web-workers-demo/issues"
+  },
+  "homepage": "https://github.com/ShailenNaidoo/web-workers-demo#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "description": "",
+  "devDependencies": {
+    "serve": "^11.3.0"
+  }
+}
