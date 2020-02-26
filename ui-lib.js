@@ -25,19 +25,22 @@ function renderToDOM(sel, App) {
   const app = new App()
 
   let oldVDOM = createVNodeInstance(app.render())
+  let newVDOM = {}
 
   const { setState } = app
   
   app.setState = async (...args) => {
     setState(...args)
 
-    const newVDOM = createVNodeInstance(app.render())
+    newVDOM = createVNodeInstance(app.render())
 
-    // const diffs = await getDiffFromWorker({ oldVDOM, newVDOM })
+    const diffs = await getDiffFromWorker({ oldVDOM, newVDOM })
 
-    const diffs = diff(oldVDOM, newVDOM)
+    // const diffs = diff(oldVDOM, newVDOM)
 
     applyDiff(diffs, el)
+
+    oldVDOM = newVDOM
   }
 
   el.appendChild(renderNodes(oldVDOM))

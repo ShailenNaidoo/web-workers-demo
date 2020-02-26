@@ -2,8 +2,35 @@
   <head>
     <script src="https://unpkg.com/random-id@1.0.3/index.js"></script>
   </head>
+  <style>
+    body {
+      padding: 50px; 
+    }
+
+    .spin {
+      width: 100px;
+      height: 100px;
+      background-color: #0CB1C4;
+      animation-name: spin;
+      animation-duration: 5000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear; 
+    }
+
+    @keyframes spin {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(360deg);
+        }
+    }
+  </style>
+  <nav>
+    <div class="spin"></div>
+  </nav>
   <body>
-    <div id="app"></div>
+    <div id="app" style="display: flex; flex-direction: row; margin-top: 100px"></div>
   </body>
   <script src="main.js" type="module"></script>
   <script src="index.js" type="module"></script>

@@ -57,7 +57,7 @@ function diff(oldNode, newNode) {
       }
     })
 
-    return diffs
+    return diffs.flat()
   }
 
   if (oldChildren !== newChildren) {

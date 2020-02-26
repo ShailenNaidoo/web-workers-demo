@@ -1,4 +1,4 @@
-import { diff } from './diff.js'
+import { diff } from './index.js'
 
 self.addEventListener('message', (e) => {
   const { oldVDOM, newVDOM } = JSON.parse(e.data)
